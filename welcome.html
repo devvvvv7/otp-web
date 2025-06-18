@@ -2,27 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Sanmati School</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      background: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #4a90e2, #6dd5ed);
+      padding: 30px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+    nav {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      gap: 25px;
+      padding: 15px;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    h1 {
-      font-size: 40px;
-      color: #4a4a4a;
-      text-shadow: 1px 1px 2px #fff;
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: #4a90e2;
+    }
+    .container {
+      padding: 40px;
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #4a90e2;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f5f5f5;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Sanmati</h1>
+  <header>
+    <h1>Welcome to Sanmati School</h1>
+    <p>Empowering Students, Building the Future</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Us</a>
+    <a href="#admission">Admissions</a>
+    <a href="#academics">Academics</a>
+    <a href="#news">News & Events</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h3>About Us</h3>
+      <p>Sanmati School is dedicated to nurturing young minds through quality education and values-based learning.</p>
+    </div>
+    <div class="card">
+      <h3>Admission</h3>
+      <p>Learn about our admission process, eligibility, and how to join the Sanmati family.</p>
+    </div>
+    <div class="card">
+      <h3>Academics</h3>
+      <p>Explore our curriculum, departments, and academic achievements across grades.</p>
+    </div>
+    <div class="card">
+      <h3>Library</h3>
+      <p>A rich collection of books and digital resources to support learning and research.</p>
+    </div>
+    <div class="card">
+      <h3>Online Classes</h3>
+      <p>Access live sessions, class recordings, and e-learning modules anytime, anywhere.</p>
+    </div>
+    <div class="card">
+      <h3>Assignments & Results</h3>
+      <p>Submit assignments and view grades and performance reports online.</p>
+    </div>
+    <div class="card">
+      <h3>Events</h3>
+      <p>Stay updated on upcoming school events, competitions, and celebrations.</p>
+    </div>
+    <div class="card">
+      <h3>Contact Us</h3>
+      <p>Reach out for support, inquiries, or to schedule a visit to our campus.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Sanmati School. All rights reserved.
+  </footer>
 </body>
 </html>

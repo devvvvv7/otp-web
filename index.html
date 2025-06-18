@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email OTP Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6b7280, #a5b4fc);
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #1f2937;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #4f46e5;
+      transform: translateY(-2px);
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .success {
+      color: #10b981;
+    }
+    .error {
+      color: #ef4444;
+    }
+    @media (max-width: 480px) {
+      .card {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Email OTP Login</h2>
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Enter your email" required>
+    </div>
+    <button id="sendOtp">Send OTP</button>
+    <div class="input-group" id="otpGroup" style="display: none;">
+      <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+    </div>
+    <button id="verifyOtp" style="display: none;">Verify OTP</button>
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    (function() {
+      try {
+        emailjs.init("114R43n_4TD9rHUZi"); // EmailJS public key
+        console.log("EmailJS initialized successfully with Public Key:", "114R43n_4TD9rHUZi");
+      } catch (error) {
+        console.error("EmailJS initialization failed:", error);
+      }
+    })();
+
+    let generatedOtp = null;
+
+    const sendOtpButton = document.getElementById('sendOtp');
+    const verifyOtpButton = document.getElementById('verifyOtp');
+    const emailInput = document.getElementById('email');
+    const otpInput = document.getElementById('otp');
+    const otpGroup = document.getElementById('otpGroup');
+    const messageDiv = document.getElementById('message');
+
+    function showMessage(text, isSuccess) {
+      messageDiv.textContent = text;
+      messageDiv.className = `message ${isSuccess ? 'success' : 'error'}`;
+    }
+
+    function generateOtp() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    sendOtpButton.addEventListener('click', () => {
+      const email = emailInput.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showMessage('Please enter a valid email address.', false);
+        return;
+      }
+
+      generatedOtp = generateOtp();
+      const templateParams = {
+        to_email: email,
+        otp: generatedOtp
+      };
+
+      console.log("Attempting to send OTP with params:", templateParams);
+      console.log("Using Service ID:", "service_iq2s93t", "Template ID:", "template_l9mfmqr");
+
+      emailjs.send('service_iq2s93t', 'template_l9mfmqr', templateParams)
+        .then((response) => {
+          console.log("EmailJS send success:", response.status, response.text);
+          showMessage('OTP sent to your email!', true);
+          otpGroup.style.display = 'block';
+          verifyOtpButton.style.display = 'block';
+          sendOtpButton.style.display = 'none';
+          emailInput.disabled = true;
+        })
+        .catch((error) => {
+          console.error("EmailJS send failed:", error);
+          showMessage(`Failed to send OTP: ${error.text || error.message || 'Unknown error. Check console for details.'}`, false);
+        });
+    });
+
+    verifyOtpButton.addEventListener('click', () => {
+      const enteredOtp = otpInput.value.trim();
+      if (enteredOtp.length !== 6 || isNaN(enteredOtp)) {
+        showMessage('Please enter a valid 6-digit OTP.', false);
+        return;
+      }
+
+      if (enteredOtp === generatedOtp) {
+        window.location.href = 'welcome.html';
+      } else {
+        showMessage('Invalid OTP. Please try again.', false);
+      }
+    });
+  </script>
+</body>
+</html>

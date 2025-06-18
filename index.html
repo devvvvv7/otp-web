@@ -98,7 +98,7 @@
   <script>
     (function() {
       try {
-        emailjs.init("114R43n_4TD9rHUZl"); // Updated Public Key
+        emailjs.init("114R43n_4TD9rHUZl"); // EmailJS public key
         console.log("EmailJS initialized successfully with Public Key:", "114R43n_4TD9rHUZl");
       } catch (error) {
         console.error("EmailJS initialization failed:", error);
@@ -132,14 +132,14 @@
 
       generatedOtp = generateOtp();
       const templateParams = {
-        to_email: email,
-        otp: generatedOtp
+        email: email,  // Updated to match {{email}} in template
+        passcode: generatedOtp  // Updated to match {{passcode}} in template
       };
 
       console.log("Attempting to send OTP with params:", templateParams);
       console.log("Using Service ID:", "service_0ht6kmv", "Template ID:", "template_l9mfmqr");
 
-      emailjs.send('service_0ht6kmv', 'template_l9mfmqr', templateParams) // Updated Service ID
+      emailjs.send('service_0ht6kmv', 'template_l9mfmqr', templateParams)
         .then((response) => {
           console.log("EmailJS send success:", response.status, response.text);
           showMessage('OTP sent to your email!', true);

@@ -150,6 +150,7 @@
         })
         .catch((error) => {
           console.error("EmailJS send failed:", error);
+          console.log("Full error object:", Object.keys(error).map(key => `${key}: ${error[key]}`));
           showMessage(`Failed to send OTP: ${error.text || error.message || 'Unknown error. Check console for details.'}`, false);
         });
     });

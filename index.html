@@ -98,8 +98,8 @@
   <script>
     (function() {
       try {
-        emailjs.init("114R43n_4TD9rHUZi"); // EmailJS public key
-        console.log("EmailJS initialized successfully with Public Key:", "114R43n_4TD9rHUZi");
+        emailjs.init("114R43n_4TD9rHUZl"); // Updated Public Key
+        console.log("EmailJS initialized successfully with Public Key:", "114R43n_4TD9rHUZl");
       } catch (error) {
         console.error("EmailJS initialization failed:", error);
       }
@@ -137,9 +137,9 @@
       };
 
       console.log("Attempting to send OTP with params:", templateParams);
-      console.log("Using Service ID:", "service_iq2s93t", "Template ID:", "template_l9mfmqr");
+      console.log("Using Service ID:", "service_0ht6kmv", "Template ID:", "template_l9mfmqr");
 
-      emailjs.send('service_iq2s93t', 'template_l9mfmqr', templateParams)
+      emailjs.send('service_0ht6kmv', 'template_l9mfmqr', templateParams) // Updated Service ID
         .then((response) => {
           console.log("EmailJS send success:", response.status, response.text);
           showMessage('OTP sent to your email!', true);
